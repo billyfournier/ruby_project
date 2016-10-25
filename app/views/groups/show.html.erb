@@ -1,0 +1,21 @@
+<h1><a href="/groups">back</a></h1>
+<h1> <%= @group.name %>
+    <%if @member_id %>
+      <button class='btn btn-default'><a href="/members/<%= @member_id %>" data-method='delete'>Leave Group</a></button>
+    <% else %>
+      <button class='btn btn-default'><a href="/members/<%= @group.id %>" data-method='post'>Join Group</a></button>
+    <% end %>
+</h1>
+
+<h4>&nbsp;<%= @group.description %> </h4>
+
+<% if @group.user.id == @user.id %>
+  <h3>Created By: You</h3>
+<% else %>
+  <h3>Created By: <%= @group.user.first_name %> <%= @group.user.last_name %></h3>
+<% end %>
+
+<h3>Members:</h3>
+<% @group.members.each do |member| %>
+  <h4>&nbsp;<%= member.user.first_name %> <%= member.user.last_name %></h4>
+<% end %>

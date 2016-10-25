@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
 
     if user && user.authenticate(params[:Password])
       session[:user_id] = user.id
-      redirect_to user_path(user.id)          # Go here if login is successful
+      redirect_to groups_path          # Go here if login is successful
     else
       flash[:errors] = ["Invalid combination"]
       redirect_to sessions_new_path
